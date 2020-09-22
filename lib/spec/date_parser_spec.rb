@@ -1,4 +1,5 @@
 require_relative "../date_parser"
+require "rspec"
 
 describe DateParser do
   
@@ -137,6 +138,24 @@ describe DateParser do
       text = "24/07/2015"
       answer = [Date.parse("24-07-2015")]
       
+      it "correctly grabs the date" do
+        expect(DateParser::parse(text)).to eql(answer)
+      end
+    end
+
+    context "Parse month day" do
+      text = "June 5th"
+      answer = [Date.parse("05-06-2020")]
+
+      it "correctly grabs the date" do
+        expect(DateParser::parse(text)).to eql(answer)
+      end
+    end
+
+    context "Parse day month" do
+      text = "5th June"
+      answer = [Date.parse("05-06-2020")]
+
       it "correctly grabs the date" do
         expect(DateParser::parse(text)).to eql(answer)
       end
