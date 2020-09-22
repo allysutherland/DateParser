@@ -1,4 +1,5 @@
 require_relative "../date_parser"
+require "rspec"
 
 describe DateParser::NaturalDateParsing do
   

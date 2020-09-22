@@ -295,6 +295,7 @@ module DateParser
     # If no date can be interpreted from the word, returns nil. In this case,
     # we look for dates of this form:
     # * MONTH DAY
+    # * DAY MONTH
     #
     # ==== Attributes
     #
@@ -308,7 +309,11 @@ module DateParser
       if MONTH.include?(words[0]) && _weak_day?(words[1])
         return month_day(words, creation_date)
       end
-      
+
+      if MONTH.include?(words[1]) && _weak_day?(words[0])
+        return month_day([words[1], words[0]], creation_date)
+      end
+
     end
     
     
